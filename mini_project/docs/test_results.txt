@@ -1,0 +1,71 @@
+1000 randomized mutations against std::set oracle: PASS (test oracle only).
+Synthetic tests: PASS (empty, root 0/1/2 children, leaf, both one-child
+directions, successor links/right child, duplicates, quoted CSV).
+Loaded 6072 airports; 1626 skipped; 0 data duplicates; countries=235; US=1251
+Count: 6072 Height: 177 Average depth: 18.323287
+Minimum: AAA Maximum: ZZV
+
+TASK 2: SEARCH CASES
+find GKA
+Path: GKA (comparisons: 1)
+GKA | Goroka Airport | Goroka | Papua New Guinea | ICAO=AYGA | -6.081689834590, 145.391998291000
+find AAC
+Path: GKA -> AEY -> AAE -> AAA -> AAC (comparisons: 5)
+AAC | El Arish International Airport | El Arish | Egypt | ICAO=HEAR | 31.073299408000, 33.835800170900
+find YZR
+Path: GKA -> MAG -> POM -> WWK -> YAM -> YAY -> YAZ -> YBB -> YBC -> YBG -> YBK -> YBL -> YBR -> YCB -> YCD -> YCG -> YCH -> YCL -> YCO -> YCT -> YCW -> YCY -> YZS -> YDA -> YDB -> YDF -> YDL -> YDN -> YDQ -> YEG -> YEK -> YEN -> YET -> YEU -> YEV -> YFB -> YFC -> YFE -> YFO -> YFR -> YFS -> YGK -> YGL -> YGP -> YGQ -> YGR -> YHB -> YHD -> YHI -> YHK -> YHM -> YHU -> YHY -> YHZ -> YIB -> YIO -> YJN -> YJT -> YKA -> YKF -> YKL -> YKY -> YKZ -> YLD -> YLJ -> YLL -> YLT -> YLW -> YMA -> YMJ -> YMM -> YMO -> YMW -> YMX -> YNA -> YND -> YNM -> YOC -> YOD -> YOJ -> YOW -> YPA -> YPE -> YPG -> YPL -> YPN -> YPQ -> YPR -> YPY -> YQA -> YQB -> YQF -> YQG -> YQH -> YQK -> YQL -> YQM -> YQQ -> YQR -> YQT -> YQU -> YQV -> YQW -> YQX -> YQY -> YQZ -> YRB -> YRI -> YRJ -> YRM -> YRT -> YSB -> YSC -> YSJ -> YSM -> YSR -> YSU -> YSY -> YTE -> YTH -> YTR -> YTS -> YTZ -> YUB -> YUL -> YUT -> YUX -> YUY -> YVC -> YVG -> YVM -> YVO -> YVP -> YVQ -> YVR -> YVT -> YVV -> YWA -> YWG -> YWK -> YWL -> YWY -> YXC -> YXD -> YXE -> YXH -> YXJ -> YXL -> YXP -> YXR -> YXS -> YXT -> YXU -> YXX -> YXY -> YYB -> YYC -> YYD -> YYE -> YYF -> YYG -> YYH -> YYJ -> YYL -> YYN -> YYQ -> YYR -> YYT -> YYU -> YYW -> YYY -> YYZ -> YZD -> YZE -> YZF -> YZH -> YZP -> YZR (comparisons: 178)
+YZR | Chris Hadfield Airport | Sarnia | Canada | ICAO=CYZR | 42.999401092529, -82.308898925781
+find XYZ
+Path: GKA -> MAG -> POM -> WWK -> YAM -> XFW -> XGN -> XLS -> XRY -> XVS -> YAI -> YAA -> XYA -> XYE -> (NULL) (comparisons: 14)
+Not found
+find !
+Path: GKA -> AEY -> AAE -> AAA -> (NULL) (comparisons: 4)
+Not found
+find ~
+Path: GKA -> MAG -> POM -> WWK -> YAM -> YAY -> YAZ -> YBB -> YBC -> YBG -> YBK -> YBL -> YBR -> YCB -> YCD -> YCG -> YCH -> YCL -> YCO -> YCT -> YCW -> YCY -> YZS -> YZT -> YZU -> YZV -> YZW -> YZX -> ZFA -> ZFM -> ZND -> ZQW -> ZSE -> ZVA -> ZWA -> ZZU -> ZZV -> (NULL) (comparisons: 37)
+Not found
+
+TASK 3: INDEPENDENT DELETE TESTS (each starts in file order)
+Case 1: remove AAC
+Top 3 before: GKA AEY MAG AAE EGS HGU POM
+D1: leaf
+Top 3 after:  GKA AEY MAG AAE EGS HGU POM
+validate: OK; remaining: 6071
+Case 2: remove AAQ
+Top 3 before: GKA AEY MAG AAE EGS HGU POM
+D2: only a left child, AAP
+Top 3 after:  GKA AEY MAG AAE EGS HGU POM
+validate: OK; remaining: 6071
+Case 3: remove AAA
+Top 3 before: GKA AEY MAG AAE EGS HGU POM
+D2: only a right child, AAC
+Top 3 after:  GKA AEY MAG AAE EGS HGU POM
+validate: OK; remaining: 6071
+Case 4: remove AEY
+Top 3 before: GKA AEY MAG AAE EGS HGU POM
+D3: two children; successor AFA
+Top 3 after:  GKA AFA MAG AAE EGS HGU POM
+validate: OK; remaining: 6071
+Case 5: remove GKA
+Top 3 before: GKA AEY MAG AAE EGS HGU POM
+D3: two children; successor GKE; root deletion
+Top 3 after:  GKE AEY MAG AAE EGS HGU POM
+validate: OK; remaining: 6071
+
+Made-up airport inserted; validate: OK
+find QQQ
+Path: GKA -> MAG -> POM -> WWK -> UAK -> SFJ -> RKV -> QLD -> REB -> QXH -> QLF -> QUY -> QNJ -> QPA -> QRO -> QPD -> QPS -> QRC -> QRA -> QPW -> QQT -> QQQ (comparisons: 22)
+QQQ | Somber Xie Test Airport | Troy | United States | ICAO=TEST | 42.728400000000, -73.691800000000
+QQQ removed; validate: OK
+
+TASK 4: TRAVERSALS AND VALIDATION
+Inorder: 6072 records; strictly sorted: YES
+Preorder reload: same preorder, full level order, height (177): YES
+Invalid saved code rejected without changing tree
+Strict inherited bounds validated after every test insertion/deletion.
+
+TASK 5: RANGE
+range BOS BWI: 113 airports, 127 nodes visited
+First: BOS Last: BWI
+DAT/CSV records agree; singleton/empty/reversed/full ranges: PASS
+ALL TESTS PASSED

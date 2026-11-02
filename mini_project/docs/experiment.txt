@@ -1,0 +1,6 @@
+10,000 successful random searches with replacement; seed=2560; same queries for all trees.
+Timer: steady_clock; excludes build, validation, output and path collection.
+File order: n=6072 height=177 average_depth=18.323287 time_ms=2.044554 comparisons=196675 checksum=763767
+Sorted order: n=6072 height=6071 average_depth=3035.500000 time_ms=316.121711 comparisons=30354864 checksum=763767
+Balanced: n=6072 height=12 average_depth=10.653162 time_ms=1.657192 comparisons=116441 checksum=763767
+Random shuffle: n=6072 height=31 average_depth=14.532773 time_ms=1.785645 comparisons=155429 checksum=763767

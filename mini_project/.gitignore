@@ -1,0 +1,4 @@
+airports
+*.o
+*.exe
+.DS_Store
